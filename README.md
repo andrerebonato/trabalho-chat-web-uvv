@@ -8,6 +8,9 @@
   <li>Mongodb</li>
 </ul>
 <b> Desenvolvido por: </b>
- <ul> 
-  <li>[André Rebonato](https://github.com/andrerebonato) </li>
- </ul>
+<ul> 
+  <li><a href="https://github.com/andrerebonato">André Rebonato</a></li>
+  <li><a href="https://github.com/zorzal">Fabiano Zorzal</a></li>
+  <li><a href="https://github.com/samkevin1">Samuel Souto</a></li>
+  <li>Eduardo Allochio</li>
+</ul>
