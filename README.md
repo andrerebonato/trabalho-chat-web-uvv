@@ -7,7 +7,7 @@
   <li>Node js</li>
   <li>Mongodb</li>
 </ul>
-<b> Desenvolvido por: </b>
+<b> Desenvolvido pelos estudantes: </b>
 <ul> 
   <li><a href="https://github.com/andrerebonato">André Rebonato</a></li>
   <li><a href="https://github.com/zorzal">Fabiano Zorzal</a></li>
