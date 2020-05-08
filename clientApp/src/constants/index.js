@@ -1,1 +1,1 @@
-export { default as AVAILABLEPAGES } from './availablePages';
+export { default as availablePages } from './availablePages';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeaderComponent } from '../../components/index';
-import { AVAILABLEPAGES } from '../../constants/index'
+import { availablePages } from '../../constants/index'
 
 const Home = () => {
     return (

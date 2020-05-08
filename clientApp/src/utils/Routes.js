@@ -3,7 +3,8 @@ import {
     HomePage,
     LoginPage
 } from '../pages/index';
-import { AVAILABLEPAGES } from '../constants/index';
+import { availablePages } from '../constants/index';
+import PrivateRoute from './PrivateRoute';
 import { Route, Switch } from 'react-router-dom';
 
 const Routes = () => {
@@ -11,8 +12,8 @@ const Routes = () => {
     return (
         <>
             <Switch>
-                <Route exact path={AVAILABLEPAGES.homePage} component={HomePage} />
-                <Route exact path={AVAILABLEPAGES.loginPage} component={LoginPage} />
+                <PrivateRoute exact path={availablePages.homePage} component={HomePage} />
+                <Route exact path={availablePages.loginPage} component={LoginPage} />
             </Switch>
         </>
     )
