@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly HeaderComponent - isLoggedIn prop test snapshot when prop isLoggedIn = true 1`] = `
+<header
+  className="Header primary-bg"
+>
+  <nav
+    className="Nav"
+  >
+    <a
+      href="/"
+    >
+      Home
+    </a>
+    <a
+      href="/"
+    >
+      Conversar
+    </a>
+    <a
+      href="/"
+    >
+      Sobre
+    </a>
+    <button
+      className="btn btn-danger"
+    >
+      Minha conta
+    </button>
+  </nav>
+  <button
+    className="Burger"
+    onClick={[Function]}
+  >
+    Menu
+  </button>
+</header>
+`;

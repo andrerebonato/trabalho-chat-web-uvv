@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './styles.css';
 import { CSSTransition } from "react-transition-group";
-import { NavbarToggler } from 'reactstrap';
 
-const Header = ({ pageTitle, isLoggedIn }) => {
+const Header = ({ isLoggedIn }) => {
     const [isHeaderVisible, setHeaderVisibility] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
 
@@ -33,8 +31,7 @@ const Header = ({ pageTitle, isLoggedIn }) => {
     };
 
     return (
-        <header className="Header">
-            <h6 className="">Chat web uvv</h6>
+        <header className="Header primary-bg">
             <CSSTransition
                 in={!isSmallScreen || isHeaderVisible}
                 timeout={350}
@@ -44,10 +41,11 @@ const Header = ({ pageTitle, isLoggedIn }) => {
                 <nav className="Nav">
                     <a href="/">Home</a>
                     <a href="/">Conversar</a>
+                    <a href="/">Sobre</a>
                     {isLoggedIn ? (
                         <button className="btn btn-danger">Minha conta</button>
                     ) : (
-                            <button className="btn btn-primary">Entrar</button>
+                            <button className="btn btn-primary primary-bg">Entrar</button>
                         )
                     }
                 </nav>
