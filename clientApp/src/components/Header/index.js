@@ -43,10 +43,9 @@ const Header = ({ pageTitle, isLoggedIn }) => {
             >
                 <nav className="Nav">
                     <a href="/">Home</a>
-                    <a href="/">Articles</a>
-                    <a href="/">About</a>
+                    <a href="/">Conversar</a>
                     {isLoggedIn ? (
-                        <button className="btn btn-danger">Logout</button>
+                        <button className="btn btn-danger">Minha conta</button>
                     ) : (
                             <button className="btn btn-primary">Entrar</button>
                         )
