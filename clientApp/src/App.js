@@ -1,12 +1,11 @@
 import React from 'react';
-import { Header } from './components/Header/index';
+import { HeaderComponent } from './components/index';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>cornos</h1>
-      <Header content="Hello world" isCorno hasColor />
+      <HeaderComponent content="Hello world" isCorno hasColor />
     </div >
   );
 }
