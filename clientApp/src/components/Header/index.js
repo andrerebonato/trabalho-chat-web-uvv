@@ -45,7 +45,7 @@ const Header = ({ isLoggedIn, activePage }) => {
                     <a href="/">Chat</a>
                     <a href="/">Sobre</a>
                     {isLoggedIn ? (
-                        <button className="btn btn-danger">Minha conta</button>
+                        <button className="btn btn-danger">Logout</button>
                     ) : (
                             <button className="btn btn-primary primary-bg">Entrar</button>
                         )

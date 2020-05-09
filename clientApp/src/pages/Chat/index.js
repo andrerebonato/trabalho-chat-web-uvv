@@ -3,13 +3,16 @@ import { HeaderComponent } from '../../components/index';
 import './styles.css';
 import io from 'socket.io-client';
 import { displayAlert, typesAlert } from '../../utils/displayAlert';
+import Message from './Message/index';
+import moment from 'moment';
+import { OldMessage } from './MessagesTypes/index';
 
 const myId = Math.random();
 
 /*
     TODO:
     
-    1. recreate the design, the actually is a simple example.
+    1. recreate the design, the actually is a simple example - done
     2. we need to make this page private, but in first we need to create signup and login pages and actions.
     3. we will need to make a semi-complex logic in this page, because:
         * the socket io doesn't have any method to save the messages on mongodb, so probably we
@@ -20,6 +23,14 @@ const myId = Math.random();
         none to check this.
 */
 
+const myOldMessages = [
+    {
+        id: 1,
+        message: "Testando funcionalidade nova...",
+        date: moment(new Date()).format('DD/MM/YYYY HH:mm')
+    }
+]
+
 const Chat = () => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
@@ -27,8 +38,10 @@ const Chat = () => {
 
     //this connect to the socket
     socket.on('connect', () => {
-        displayAlert("Conectado com sucesso ao chat.", typesAlert.success);
+        console.log('Conectado com sucesso');
     })
+
+    useEffect(() => { displayAlert("Conectado com sucesso ao chat.", typesAlert.success); }, [])
 
     useEffect(() => {
         const handleNewMessage = newMessage => {
@@ -40,6 +53,7 @@ const Chat = () => {
 
     }, [messages]);
 
+
     const handleInputChange = event => {
         setMessage(event.target.value);
     }
@@ -49,42 +63,67 @@ const Chat = () => {
 
         //check if message state have some value
         if (message.trim()) {
-            socket.emit('chat.message', {
+            let newMessage = {
                 id: myId,
-                message
-            })
+                message,
+                date: moment(new Date()).format('DD/MM/YYYY HH:mm')
+            }
+            socket.emit('chat.message', newMessage);
+            myOldMessages.push(newMessage);
             setMessage('');
         }
     }
 
-
     return (
-        <>
-            <HeaderComponent />
-            <main className="container">
-                <ul className="list">
-                    {
-                        messages.map((m, index) => (
-                            <li
-                                className={`list__item list__item--${m.id === myId ? 'mine' : 'other'}`}
-                                key={index}
-                            >
-                                <span className={`message message--${m.id === myId ? 'mine' : 'other'}`}>
-                                    Enviador por: {m.id}<br></br>
-                                    {m.message}
-                                </span>
-                            </li>
-                        ))
-                    }
-                </ul>
-                <form className="form" onSubmit={handleFormSubmit}>
-                    <input className="form__field" placeholder="Digite alguma mensagem e pressione enter para enviar..."
-                        onChange={handleInputChange}
-                        value={message}
-                    />
-                </form>
-            </main>
-        </>
+        <div class="container mt-4">
+            <h3 class=" text-center">Chat web uvv</h3>
+            <div class="messaging">
+                <div class="inbox_msg">
+                    <div class="inbox_people col-md-4">
+                        <div class="headind_srch">
+                            <div class="recent_heading">
+                                <h4>Minhas mensagens</h4>
+                            </div>
+                            <div class="srch_bar">
+                                <div class="stylish-input-group">
+                                    <input type="text" class="search-bar" placeholder="Pesquisar" />
+                                    <span class="input-group-addon">
+                                        <button type="button">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inbox_chat">
+                            {
+                                myOldMessages.length > 0 ? myOldMessages.map((m) => (
+                                    <OldMessage message={m} />
+                                )) : <h1>Você não tem nenhuma mensagem anterior.</h1>
+                            }
+                        </div>
+                    </div>
+                    <div class="mesgs col-md-8">
+                        <div class="msg_history">
+                            {
+                                messages.map((m, index) => (
+                                    <Message message={m} myId={myId} />
+                                ))
+                            }
+                        </div>
+                        <div class="type_msg">
+                            <div class="input_msg_write">
+                                <input type="text" class="write_msg"
+                                    placeholder="Digite a sua mensagem e pressione clique no botão para enviar..."
+                                    onChange={handleInputChange} value={message}
+                                />
+                                <button class="msg_send_btn primary-bg" type="button" onClick={handleFormSubmit}><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 
