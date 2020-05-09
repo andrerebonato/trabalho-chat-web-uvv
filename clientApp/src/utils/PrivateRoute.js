@@ -3,7 +3,6 @@ import { availablePages } from '../constants/index';
 import { isAuthenticated } from '../services/authJwt';
 import { Route, Redirect } from "react-router-dom";
 
-
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
         {...rest}
