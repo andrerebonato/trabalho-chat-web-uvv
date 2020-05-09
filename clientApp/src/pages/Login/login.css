@@ -1,0 +1,117 @@
+div .smoke{
+    background-color:whitesmoke;
+    font-family: "Roboto", Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+section {
+    
+    margin: 0;
+    padding: 0;
+    height: 60vh;
+    background-color: #01579B;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+form {
+    margin: 20px 0;
+    background-color: white;
+    padding: 30px 35px;
+    border-radius: 5px;
+}
+
+form .input-block {
+    margin-bottom: 20px;
+}
+
+form .input-block label {
+    font-size: 14px;
+    color: #000;
+}
+
+form .input-block input {
+    width: 100%;
+    display: block;
+    margin-top: 8px;
+    padding: 7px;
+    font-size: 16px;
+    color: #000;
+    border-radius: 2px;
+    border: 1px solid #ccddef;
+    outline-color: #0D47A1;
+}
+
+form .btn-login {
+    display: block;
+    min-width: 120px;
+    border: none;
+    background-color: #01579B;
+    color: white;
+    margin: auto;
+    padding: 7px;
+}
+
+form .btn-login:hover {
+    background-color: #1565C0;
+}
+
+form {
+    overflow: hidden;
+    animation-name: fade;
+    animation-duration: 2s;
+}
+
+/* efeitos de transição dos inputs do formulários */
+form .input-block:nth-child(1) {
+    animation-name: move;
+    animation-duration: 500ms;   
+    animation-delay: 0.25;
+}
+
+form .input-block:nth-child(2) {
+    animation-name: move;
+    animation-duration: 500ms;   
+    animation-delay: 550ms;
+    animation-fill-mode: backwards;
+}
+
+/* desaparece com o formulário */
+.form-hide {
+    animation-name: down;
+    animation-duration: 3.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: 50ms;
+}
+
+/* form no-no */
+form .validate-error {
+    animation-name: nono;
+    animation-duration: 500ms;
+}
+
+.gradient{
+    background-color: white;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    width: 35%;
+    display: float;
+    flex-direction: column;
+    align-items: center;
+    border: solid #efefef;
+    box-shadow:
+        0 1px 1px rgba(0,0,0,0.15),
+        0 10px 0 -5px #eee,
+        0 10px 1px -4px rgba(0,0,0,0.15),
+        0 20px 0 -10px #eee,
+        0 20px 1px -9px rgba(0,0,0,0.15);
+    padding: 25px;
+    border-radius: px;
+  }
