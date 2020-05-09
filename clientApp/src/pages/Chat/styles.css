@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    justify-content: space-between;
+    width: 100vw;
+  }
+  
+  .form {
+    background: #283593;
+    padding: 1rem;
+  }
+  
+  .form__field {
+    border: 1px solid #283593;
+    border-radius: 5px;
+    color: #333;
+    font-size: 1.2rem;
+    padding: .5rem 1rem;
+    width: 100%;
+  }
+  
+  .form__field:focus {
+    border-color: #a3f7ff;
+    box-shadow: 0 0 7px #a3f7ff;
+    outline: none;
+  }
+  
+  .list {
+    margin: 0;
+    padding: 1rem;
+  }
+  
+  .list__item {
+    list-style: none;
+  }
+  
+  .list__item.list__item--mine {
+    text-align: right;
+  }
+  
+  .message {
+    border: 1px solid transparent;
+    border-radius: 5px;
+    display: inline-block;
+    color: #ffffff;
+    list-style: none;
+    margin-bottom: 1rem;
+    padding: .5rem 1rem;
+  }
+  
+  .message.message--mine {
+    background: #2E7D32;
+    border-color: #1B5E20;
+    text-align: right;
+  }
+  
+  .message.message--other {
+    background: #1A237E;
+    border-color: #283593;
+  }
