@@ -1,6 +1,7 @@
 const availablePages = {
     loginPage: '/login',
-    homePage: '/'
+    homePage: '/',
+    signUpPage: '/cadastrar'
 }
 
 export default availablePages;
