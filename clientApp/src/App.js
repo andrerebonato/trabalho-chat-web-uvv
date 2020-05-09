@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Routes />
-      <Alert stack={{ limit: 1, offset: 150 }} />
+      <Alert stack={{ limit: 1, offset: 100 }} />
     </div >
   );
 }

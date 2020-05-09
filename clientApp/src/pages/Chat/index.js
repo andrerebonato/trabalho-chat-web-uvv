@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { HeaderComponent } from '../../components/index';
 import './styles.css';
 import io from 'socket.io-client';
 import { displayAlert, typesAlert } from '../../utils/displayAlert';
 import Message from './Message/index';
 import moment from 'moment';
 import { OldMessage } from './MessagesTypes/index';
+import { availablePages } from '../../constants/index';
+import { useHistory } from 'react-router-dom';
 
 const myId = Math.random();
 
@@ -34,6 +35,8 @@ const myOldMessages = [
 const Chat = () => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
+
+    const history = useHistory();
     const socket = io('http://localhost:8080');
 
     //this connect to the socket
@@ -111,9 +114,10 @@ const Chat = () => {
                                 ))
                             }
                         </div>
+
                         <div class="type_msg">
                             <div class="input_msg_write">
-                                <input type="text" class="write_msg"
+                                <input type="text" className="form-control"
                                     placeholder="Digite a sua mensagem e pressione clique no botão para enviar..."
                                     onChange={handleInputChange} value={message}
                                 />
@@ -122,6 +126,15 @@ const Chat = () => {
                         </div>
                     </div>
                 </div>
+
+                <button className="btn btn-danger mt-1"
+                    onClick={() => {
+                        history.push(availablePages.homePage)
+                        displayAlert('Desconectado do chat com sucesso.', typesAlert.error);
+                    }}
+                >
+                    Sair do chat
+                </button>
             </div>
         </div>
     )
