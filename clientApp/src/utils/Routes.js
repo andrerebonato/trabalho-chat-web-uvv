@@ -1,7 +1,8 @@
 import React from 'react';
 import {
     HomePage,
-    LoginPage
+    LoginPage,
+    SignUpPage
 } from '../pages/index';
 import { availablePages } from '../constants/index';
 import PrivateRoute from './PrivateRoute';
@@ -12,8 +13,9 @@ const Routes = () => {
     return (
         <>
             <Switch>
-                <PrivateRoute exact path={availablePages.homePage} component={HomePage} />
+                <Route exact path={availablePages.homePage} component={HomePage} />
                 <Route exact path={availablePages.loginPage} component={LoginPage} />
+                <Route exact path={availablePages.signUpPage} component={SignUpPage} />
             </Switch>
         </>
     )
