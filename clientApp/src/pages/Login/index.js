@@ -5,7 +5,7 @@ import { validationSchema } from './validation';
 import { faEnvelope, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
+//TODO: create API request and change the background on this component
 const Login = () => {
 
     return(
