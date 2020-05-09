@@ -100,3 +100,17 @@
 	transition: opacity 350ms, transform 350ms;
 }  
 
+
+.container-center {
+	margin-bottom: 50px !important;
+	align-items: center !important;
+	display: flex !important;
+	flex-direction: row !important;  
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	transition: 0.3s !important;
+}
+
+.error-msg {
+	color: #D50000 !important;
+}
