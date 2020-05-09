@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { CSSTransition } from "react-transition-group";
+import { availablePages } from '../../constants/index';
 
-const Header = ({ isLoggedIn }) => {
+
+const Header = ({ isLoggedIn, activePage }) => {
     const [isHeaderVisible, setHeaderVisibility] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
 
@@ -39,8 +41,8 @@ const Header = ({ isLoggedIn }) => {
                 unmountOnExit
             >
                 <nav className="Nav">
-                    <a href="/">Home</a>
-                    <a href="/">Conversar</a>
+                    <a href="/" className={activePage === availablePages.homePage ? 'active' : null}>Home</a>
+                    <a href="/">Chat</a>
                     <a href="/">Sobre</a>
                     {isLoggedIn ? (
                         <button className="btn btn-danger">Minha conta</button>
