@@ -15,7 +15,7 @@ export default yup.object().shape({
         .string()
         .max(64, 'O email está muito grande, digite no máximo 64 caracteres.')
         .min(4, 'O email está muito curto, digite ao menos 4 caracteres.')
-        .email('Formato incorreto, informe um email...')
+        .email('Formato incorreto, informe um email correto...')
         .required('Preencha este campo...'),
     password: yup
         .string()

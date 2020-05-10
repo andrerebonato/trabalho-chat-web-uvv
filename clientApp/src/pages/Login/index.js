@@ -1,14 +1,17 @@
 import React from 'react';
 import './login.css';
-import {Field, Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import { validationSchema } from './validation';
 import { faEnvelope, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-//TODO: create API request and change the background on this component
+/*
+    TODO: create API request and change the background on this component
+*/
+
 const Login = () => {
 
-    return(
+    return (
         <Formik
             initialValues={{
                 email: '',
@@ -18,7 +21,7 @@ const Login = () => {
                 alert(values)
             }}
             validationSchema={validationSchema}
-        >  
+        >
             {
                 formik => (
                     <div className="az-body smoke">
@@ -29,7 +32,7 @@ const Login = () => {
                                     <Form method="post">
 
                                         <div className="form-group">
-                                        <FontAwesomeIcon icon={faEnvelope}/><label className="ml-1 font-weight-bold">Email:</label>
+                                            <FontAwesomeIcon icon={faEnvelope} /><label className="ml-1 font-weight-bold">Email:</label>
                                             <Field
                                                 name="email"
                                                 className="form-control"
@@ -42,9 +45,9 @@ const Login = () => {
                                                 {formik.touched.email && formik.errors.email}
                                             </small>
                                         </div>
-                        
+
                                         <div className="form-group">
-                                        <FontAwesomeIcon icon={faUnlock}/><label className="ml-1 font-weight-bold"> Senha:</label>
+                                            <FontAwesomeIcon icon={faUnlock} /><label className="ml-1 font-weight-bold"> Senha:</label>
                                             <Field
                                                 name="password"
                                                 type="password"
