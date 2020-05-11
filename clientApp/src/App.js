@@ -7,7 +7,7 @@ import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: 'white' }}>
       <Routes />
       <Alert stack={{ limit: 1, offset: 100 }} />
     </div >

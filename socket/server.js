@@ -20,7 +20,7 @@ const SERVER_PORT = 8080;
 io.on('connection', socket => {
     console.log('[IO] Connection => server has a new connection.')
     socket.on('chat.message', message => {
-        console.log('[SOCKET] a new hat.message has received => ', message);
+        console.log('[SOCKET] a new chat.message has received => ', message);
         io.emit('chat.message', message);
     });
     socket.on('disconnect', () => {
