@@ -4,9 +4,13 @@ import {Field, Form, Formik } from 'formik';
 import { validationSchema } from './validation';
 import { faEnvelope, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { availablePages } from '../../constants/index';
+import { useHistory } from 'react-router-dom';
 
 //TODO: create API request and change the background on this component
 const Login = () => {
+
+    const history = useHistory();
 
     return(
         <Formik
@@ -61,6 +65,11 @@ const Login = () => {
 
                                         <button className="btn-block btn btn-login mr-2 primary-bg" type="submit">Entrar</button>
                                     </Form>
+                                    <button className="btn btn-link text-muted"
+                                        onClick={() => {
+                                            history.push(availablePages.signUpPage)
+                                        }}
+                                    >Ainda não tem uma conta? Clique aqui.</button>
                                 </div>
                             </div>
                         </div>
