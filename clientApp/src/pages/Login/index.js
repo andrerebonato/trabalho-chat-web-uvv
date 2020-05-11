@@ -12,10 +12,8 @@ import { useHistory } from 'react-router-dom';
 */
 
 const Login = () => {
-
     const history = useHistory();
-
-    return(
+    return (
         <Formik
             initialValues={{
                 email: '',
