@@ -78,27 +78,27 @@ const Chat = () => {
     }
 
     return (
-        <div class="container mt-4">
-            <h3 class=" text-center">Chat web uvv</h3>
-            <div class="messaging">
-                <div class="inbox_msg">
-                    <div class="inbox_people col-md-4">
-                        <div class="headind_srch">
-                            <div class="recent_heading">
+        <div className="container mt-4">
+            <h3 className=" text-center">Chat web uvv</h3>
+            <div className="messaging">
+                <div className="inbox_msg">
+                    <div className="inbox_people col-md-4">
+                        <div className="headind_srch">
+                            <div className="recent_heading">
                                 <h4>Minhas mensagens</h4>
                             </div>
-                            <div class="srch_bar">
-                                <div class="stylish-input-group">
-                                    <input type="text" class="search-bar" placeholder="Pesquisar" />
-                                    <span class="input-group-addon">
+                            <div className="srch_bar">
+                                <div className="stylish-input-group">
+                                    <input type="text" className="search-bar" placeholder="Pesquisar" />
+                                    <span className="input-group-addon">
                                         <button type="button">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                            <i className="fa fa-search" aria-hidden="true"></i>
                                         </button>
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        <div class="inbox_chat">
+                        <div className="inbox_chat">
                             {
                                 myOldMessages.length > 0 ? myOldMessages.map((m) => (
                                     <OldMessage message={m} />
@@ -106,8 +106,8 @@ const Chat = () => {
                             }
                         </div>
                     </div>
-                    <div class="mesgs col-md-8">
-                        <div class="msg_history">
+                    <div className="mesgs col-md-8">
+                        <div className="msg_history">
                             {
                                 messages.map((m, index) => (
                                     <Message message={m} myId={myId} />
@@ -115,13 +115,13 @@ const Chat = () => {
                             }
                         </div>
 
-                        <div class="type_msg">
-                            <div class="input_msg_write">
+                        <div className="type_msg">
+                            <div className="input_msg_write">
                                 <input type="text" className="form-control"
                                     placeholder="Digite a sua mensagem e pressione clique no botão para enviar..."
                                     onChange={handleInputChange} value={message}
                                 />
-                                <button class="msg_send_btn primary-bg" type="button" onClick={handleFormSubmit}><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                                <button className="msg_send_btn primary-bg" type="button" onClick={handleFormSubmit}><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </div>
