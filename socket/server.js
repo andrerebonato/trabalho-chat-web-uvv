@@ -6,8 +6,7 @@ const app = new koa();
 const server = http.createServer(app.callback());
 const io = socket(server);
 
-const SERVER_HOST = "localhost";
-const SERVER_PORT = 8080;
+const SERVER_PORT = process.env.PORT || 8080;
 
 
 /*
@@ -28,7 +27,7 @@ io.on('connection', socket => {
     });
 });
 
-server.listen(SERVER_PORT, SERVER_HOST, () => {
-    console.log(`[HTTP] Listen => Server is already. Running at: http://${SERVER_HOST}:${SERVER_PORT}`);
+server.listen(SERVER_PORT, () => {
+    console.log(`[HTTP] Listen => Server is already. Running at port: ${SERVER_PORT}`);
     console.log('[HTTP] Listen => If you want to stop this proccess, press CTRL + C.');
 });
