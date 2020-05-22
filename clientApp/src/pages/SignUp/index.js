@@ -32,8 +32,8 @@ const SignUp = () => {
     const StepOne = ({ formik }) => (
         <>
             <h4 className="mt-2 text-center font-weight-bold">{error ? error : "Realizar cadastro"}</h4>
-
             <div className="form-group">
+            <style>{'body { background-color: whitesmoke; }'}</style>
                 <Field className="form-control" type="email" placeholder="Digite seu email" style={{ marginTop: 25 }}
                     name="email"
                     onChange={e =>
@@ -56,9 +56,10 @@ const SignUp = () => {
 
     const StepTwo = ({ formik }) => (
         <>
-            <h4 className="text-center font-weight-bold">Preencha os campos abaixo</h4>
+            <h2 className="mt-2 text-center font-weight-bold">Preencha os campos abaixo</h2>
             <Form method="post">
                 <div className="form-group row">
+                <style>{'body { background-color: whitesmoke; }'}</style>
                     <div className="col-md-12">
                         <Field className="form-control col-md-12" type="name" placeholder="Digite seu nome..."
                             name="name"

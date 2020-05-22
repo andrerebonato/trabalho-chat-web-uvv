@@ -79,7 +79,6 @@ const Chat = () => {
 
     return (
         <div className="container mt-4">
-            <h3 className=" text-center">Chat web uvv</h3>
             <div className="messaging">
                 <div className="inbox_msg">
                     <div className="inbox_people col-md-4">

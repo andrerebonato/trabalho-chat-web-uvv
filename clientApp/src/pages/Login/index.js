@@ -27,6 +27,7 @@ const Login = () => {
             {
                 formik => (
                     <div className="az-body smoke">
+                        <style>{'body { background-color: whitesmoke; }'}</style>
                         <div className="az-signin-wrapper az-body">
                             <div className="az-card-signin gradient">
                                 <div className="az-signin-header">
