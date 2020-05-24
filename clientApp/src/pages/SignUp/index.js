@@ -32,15 +32,15 @@ const SignUp = () => {
     const StepOne = ({ formik }) => (
         <>
             <h4 className="mt-2 text-center font-weight-bold">{error ? error : "Realizar cadastro"}</h4>
-
             <div className="form-group">
+            <style>{'body { background-color: whitesmoke; }'}</style>
                 <Field className="form-control" type="email" placeholder="Digite seu email" style={{ marginTop: 25 }}
                     name="email"
                     onChange={e =>
                         formik.setFieldValue('email', e.target.value)
                     }
                 />
-                <small className="text-danger mt-1">
+                <small className="text-danger mt-1 font-weight-bold">
                     {formik.touched.email && formik.errors.email}
                 </small>
 
@@ -56,17 +56,18 @@ const SignUp = () => {
 
     const StepTwo = ({ formik }) => (
         <>
-            <h4 className="text-center font-weight-bold">Preencha os campos abaixo</h4>
+            <h2 className="mt-2 text-center font-weight-bold">Preencha os campos abaixo</h2>
             <Form method="post">
                 <div className="form-group row">
-                    <div class="col-md-12">
+                <style>{'body { background-color: whitesmoke; }'}</style>
+                    <div className="col-md-12">
                         <Field className="form-control col-md-12" type="name" placeholder="Digite seu nome..."
                             name="name"
                             onChange={e =>
                                 formik.setFieldValue('name', e.target.value)
                             }
                         />
-                        <small className="text-danger mt-1">
+                        <small className="text-danger mt-1 font-weight-bold">
                             {formik.touched.name && formik.errors.name}
                         </small>
                     </div>
@@ -77,7 +78,7 @@ const SignUp = () => {
                                 formik.setFieldValue('lastName', e.target.value)
                             }
                         />
-                        <small className="text-danger mt-1">
+                        <small className="text-danger mt-1 font-weight-bold">
                             {formik.touched.lastName && formik.errors.lastName}
                         </small>
                     </div>
@@ -88,7 +89,7 @@ const SignUp = () => {
                                 formik.setFieldValue('email', e.target.value)
                             }
                         />
-                        <small className="text-danger mt-1">
+                        <small className="text-danger mt-1 font-weight-bold">
                             {formik.touched.email && formik.errors.email}
                         </small>
                     </div>
@@ -100,7 +101,7 @@ const SignUp = () => {
                                 formik.setFieldValue('password', e.target.value)
                             }
                         />
-                        <small className="text-danger mt-1">
+                        <small className="text-danger mt-1 font-weight-bold">
                             {formik.touched.password && formik.errors.password}
                         </small>
                     </div>
@@ -112,7 +113,7 @@ const SignUp = () => {
                                 formik.setFieldValue('repeatPassword', e.target.value)
                             }
                         />
-                        <small className="text-danger mt-1">
+                        <small className="text-danger mt-1 font-weight-bold">
                             {formik.touched.repeatPassword && formik.errors.repeatPassword}
                         </small>
                     </div>

@@ -1,4 +1,14 @@
+div .smoke{
+    background-color:whitesmoke;
+    font-family: "Roboto", Arial, sans-serif;
+    box-sizing: border-box;
+}
 
+Form .smoke{
+    background-color:whitesmoke;
+    font-family: "Roboto", Arial, sans-serif;
+    box-sizing: border-box;
+}
 
 section {
     

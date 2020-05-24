@@ -39,9 +39,7 @@ const Header = ({ isLoggedIn, activePage }) => {
             <CSSTransition
                 in={!isSmallScreen || isHeaderVisible}
                 timeout={350}
-                classNames="NavAnimation"
-                unmountOnExit
-            >
+                classNames="NavAnimation" unmountOnExit>
                 <nav className="Nav">
                     <a href="/" className={activePage === availablePages.homePage ? 'active' : null}>Home</a>
                     <a href=""
