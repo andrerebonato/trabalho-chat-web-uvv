@@ -28,7 +28,7 @@ io.on('connection', socket => {
     });
 });
 
-server.listen(SERVER_PORT, SERVER_HOST, () => {
+server.listen(SERVER_PORT, () => {
     console.log(`[HTTP] Listen => Server is already. Running at: http://${SERVER_HOST}:${SERVER_PORT}`);
     console.log('[HTTP] Listen => If you want to stop this proccess, press CTRL + C.');
 });

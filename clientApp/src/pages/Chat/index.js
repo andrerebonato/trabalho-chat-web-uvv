@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
-import io from 'socket.io-client';
+import { socket } from '../../services/webSocket';
 import { displayAlert, typesAlert } from '../../utils/displayAlert';
 import Message from './Message/index';
 import moment from 'moment';
@@ -35,27 +35,22 @@ const myOldMessages = [
 const Chat = () => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-
     const history = useHistory();
-    const socket = io('http://localhost:8080');
 
-    //this connect to the socket
-    socket.on('connect', () => {
-        console.log('Conectado com sucesso');
-    })
-
-    useEffect(() => { displayAlert("Conectado com sucesso ao chat.", typesAlert.success); }, [])
-
+    //connect to the socket and send a new message.
     useEffect(() => {
         const handleNewMessage = newMessage => {
             setMessages([...messages, newMessage]);
         }
+
+        socket.disconnect();
+        socket.connect();
         socket.on('chat.message', handleNewMessage);
-
         return () => socket.off('chat.message', handleNewMessage);
-
     }, [messages]);
 
+    //display success connected to the chat
+    useEffect(() => { displayAlert("Conectado com sucesso ao chat.", typesAlert.success); }, []);
 
     const handleInputChange = event => {
         setMessage(event.target.value);
@@ -79,7 +74,7 @@ const Chat = () => {
 
     return (
         <div class="container mt-4">
-            <h3 class=" text-center">Chat web uvv</h3>
+            <h3 class="text-center">chat dos cornos</h3>
             <div class="messaging">
                 <div class="inbox_msg">
                     <div class="inbox_people col-md-4">
