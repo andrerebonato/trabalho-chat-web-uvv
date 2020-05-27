@@ -42,12 +42,8 @@ router.post('/login', function (req, res, next) {
                         expiresIn: 30000
                     });
 
-                    return res.status(200).json({
-                        success: true,
-                        message: 'Autenticado com sucesso.',
-                        token: token,
-                        user: result
-                    })
+                    return res.status(200).json(HandleResponse.loginResponse('Autenticado com sucesso.', result, token));
+
                 } else {
                     return res.status(200).json(
                         HandleResponse.logicalError('Email ou senha incorretos.', null)
@@ -147,7 +143,7 @@ router.get('/get-by-id', verifyJwt, function (req, res, next) {
 //delete user, the id needs to be informed on the request body
 router.delete('/delete-by-id', function (req, res, next) {
     try {
-        const { userId } = req.body.content;
+        const { userId } = req.body.userId;
 
         User.deleteOne({ _id: userId }, function (err, result) {
             if (err) {

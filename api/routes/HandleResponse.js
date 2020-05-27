@@ -8,6 +8,15 @@ class HandleResponse {
         }
     }
 
+    static loginResponse(message, data, token) {
+        return {
+            success: true,
+            message: message,
+            token: token,
+            user: data
+        }
+    }
+
     static logicalError(message, data) {
         return {
             success: false,

@@ -16,6 +16,10 @@ const Chat = () => {
     const [user, setUser] = useState([]);
     const history = useHistory();
 
+    useEffect(() => {
+        getAllMessages();
+    }, []);
+
     async function getMyOldMessages() {
         mainApi.get(eps.getOldMessages, { userId: getUser() }).then((res) => {
             const oldMessages = res.data.data;
@@ -48,39 +52,13 @@ const Chat = () => {
         }
     }
 
-    useEffect(async () => {
-        await getAllMessages();
-        getMyOldMessages();
-        getUserData();
-    }, []);
-
-    /*useEffect(() => {
-        const userId = getUser();
-        mainApi.get(eps.getOldMessages, userId).then((res) => {
-            setOldMessages(res.data.data);
-        });
-    }, [])*/
-
-    //connect to the socket and send a new message.
-    /*useEffect(() => {
-        const handleNewMessage = newMessage => {
-            setMessages([...messages, newMessage]);
-        }
-
-        socket.disconnect();
-        socket.connect();
-        socket.on('chat.message', handleNewMessage);
-        return () => socket.off('chat.message', handleNewMessage);
-    }, [messages]);*/
-
-    //display success connected to the chat
     useEffect(() => { displayAlert("Conectado com sucesso ao chat.", typesAlert.success); }, []);
 
     const handleInputChange = event => {
         setMessage(event.target.value);
     }
 
-    const handleFormSubmit = event => {
+    function handleFormSubmit(event) {
         event.preventDefault();
 
         //check if message state have some value
@@ -91,10 +69,10 @@ const Chat = () => {
                 date: moment(new Date()).format('DD/MM/YYYY HH:mm'),
                 userName: `${user.firstname} ${user.lastname}`
             }
-            console.log(newMessage)
 
             mainApi.post(eps.createMessage, newMessage).then((res) => {
                 if (res.data.success) {
+                    console.log('sucesso', newMessage)
                     setMessages([...messages], newMessage);
                     setOldMessages([...myOldMessages], newMessage);
                     setMessage('');
