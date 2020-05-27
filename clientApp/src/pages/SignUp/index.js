@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
+import { useHistory } from 'react-router-dom';
 import './styles.css'
 import formValidation from './formValidation';
+import mainApi, { eps } from '../../services/mainApi';
 import { displayAlert, typesAlert } from '../../utils/displayAlert'
+import { availablePages } from '../../constants';
 
 const steps = {
     one: 1,
@@ -14,6 +17,7 @@ const steps = {
 const SignUp = () => {
     const [error, setError] = useState(false);
     const [step, setStep] = useState(steps.one);
+    const history = useHistory();
 
     const validateStepOne = (email) => {
         if (email !== null && email.length > 5) {
@@ -33,7 +37,7 @@ const SignUp = () => {
         <>
             <h4 className="mt-2 text-center font-weight-bold">{error ? error : "Realizar cadastro"}</h4>
             <div className="form-group">
-            <style>{'body { background-color: whitesmoke; }'}</style>
+                <style>{'body { background-color: whitesmoke; }'}</style>
                 <Field className="form-control" type="email" placeholder="Digite seu email" style={{ marginTop: 25 }}
                     name="email"
                     onChange={e =>
@@ -56,10 +60,10 @@ const SignUp = () => {
 
     const StepTwo = ({ formik }) => (
         <>
-            <h2 className="mt-2 text-center font-weight-bold">Preencha os campos abaixo</h2>
+            <h2 className="mt-2 text-center font-weight-bold">Cadastro</h2>
             <Form method="post">
                 <div className="form-group row">
-                <style>{'body { background-color: whitesmoke; }'}</style>
+                    <style>{'body { background-color: whitesmoke; }'}</style>
                     <div className="col-md-12">
                         <Field className="form-control col-md-12" type="name" placeholder="Digite seu nome..."
                             name="name"
@@ -141,8 +145,25 @@ const SignUp = () => {
             validationSchema={formValidation}
             onSubmit={(values) => {
                 if (!checkIfPasswordsMatch(values.password, values.repeatPassword)) {
-                    //TODO: add the alert toast component here, showing the message above
                     displayAlert("Senhas não coincidem!", typesAlert.error);
+                } else {
+                    const user = {
+                        firstname: values.name,
+                        lastname: values.lastName,
+                        email: values.email,
+                        password: values.password
+                    }
+                    console.log(user)
+
+                    mainApi.post(eps.signUp, user).then((res) => {
+                        console.log(res.data)
+                        if (res.data.success == true) {
+                            displayAlert(res.data.message, typesAlert.success);
+                            history.push(availablePages.loginPage);
+                        } else {
+                            displayAlert(res.data.message, typesAlert.error);
+                        }
+                    })
                 }
             }}
         >

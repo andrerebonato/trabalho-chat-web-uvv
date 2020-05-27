@@ -1,13 +1,20 @@
-import React from 'react';
-import { HeaderComponent } from '../../components/index';
+import React, { useEffect } from 'react';
 import { isAuthenticated } from '../../services/authJwt';
 import { availablePages } from '../../constants/index'
+import { useHistory } from 'react-router-dom';
 
 const Home = () => {
+    const history = useHistory();
+    useEffect(() => {
+        if (isAuthenticated)
+            history.push(availablePages.chatPage);
+        else {
+            history.push(availablePages.loginPage);
+        }
+    }, []);
+
     return (
         <>
-            <HeaderComponent isLoggedIn={isAuthenticated() ? true : false} activePage={availablePages.homePage} />
-
         </>
     )
 }

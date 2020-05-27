@@ -5,7 +5,7 @@ import { MyMessage, OtherMessage } from '../MessagesTypes/index';
 const Message = ({ message, myId }) => {
 
     return (
-        message.id === myId ? <MyMessage message={message} /> : <OtherMessage message={message} />
+        message.user === myId ? <MyMessage message={message} /> : <OtherMessage message={message} />
     )
 
 }

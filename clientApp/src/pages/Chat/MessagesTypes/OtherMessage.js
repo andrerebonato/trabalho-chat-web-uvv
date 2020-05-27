@@ -7,7 +7,7 @@ const OtherMessage = ({ message }) => (
         </div>
         <div class="received_msg">
             <div class="received_withd_msg">
-                <p>{Math.random()} disse: {message.message}</p>
+                <p>{message.userName} disse: {message.content}</p>
                 <span class="time_date">Enviado em: {message.date} </span>
             </div>
         </div>

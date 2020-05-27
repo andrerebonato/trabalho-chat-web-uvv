@@ -1,7 +1,17 @@
 import axios from 'axios';
 import { getToken } from './authJwt';
 
-const END_POINT = "https://localhost:3001";
+const END_POINT = "http://localhost:3001";
+
+//endpoints
+export const eps = {
+    signUp: '/user/register',
+    signIn: '/user/login',
+    getOldMessages: '/user/get-my-old-messages',
+    getUserData: '/user/get-by-id',
+    getAllMessages: '/message/list-all',
+    createMessage: '/message/create'
+}
 
 const mainApi = axios.create({
     baseURL: END_POINT

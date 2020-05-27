@@ -6,10 +6,9 @@ import { faEnvelope, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { availablePages } from '../../constants/index';
 import { useHistory } from 'react-router-dom';
-
-/*
-    TODO: create API request and change the background on this component
-*/
+import { displayAlert, typesAlert } from '../../utils/displayAlert'
+import { handleLogin } from '../../services/authJwt';
+import mainApi, { eps } from '../../services/mainApi';
 
 const Login = () => {
     const history = useHistory();
@@ -20,7 +19,16 @@ const Login = () => {
                 password: ''
             }}
             onSubmit={(values) => {
-                alert(values)
+                mainApi.post(eps.signIn, values).then((res) => {
+                    console.log(res.data)
+                    if (res.data.success) {
+                        displayAlert(res.data.message, typesAlert.success);
+                        handleLogin(res.data.token, res.data.user._id);
+                        history.push(availablePages.chatPage);
+                    } else {
+                        displayAlert(res.data.message, typesAlert.error);
+                    }
+                })
             }}
             validationSchema={validationSchema}
         >
@@ -41,7 +49,7 @@ const Login = () => {
                                                 className="form-control"
                                                 placeholder="Insira seu email..."
                                                 onChange={(e) => {
-                                                    formik.setFieldValue('email', e.target.values);
+                                                    formik.setFieldValue('email', e.target.value);
                                                 }}
                                             />
                                             <small className="text-danger font-weight-bold">
@@ -57,7 +65,7 @@ const Login = () => {
                                                 className="form-control"
                                                 placeholder="Insira sua senha..."
                                                 onChange={(e) => {
-                                                    formik.setFieldValue('password', e.target.values);
+                                                    formik.setFieldValue('password', e.target.value);
                                                 }}
                                             />
                                             <small className="text-danger font-weight-bold">

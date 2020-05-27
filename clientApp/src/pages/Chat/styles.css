@@ -18,11 +18,7 @@ img{ max-width:100%;}
 .srch_bar {
   display: inline-block;
   text-align: right;
-<<<<<<< HEAD
   width: 60% padding;
-=======
-  width: 60%;
->>>>>>> 8d44a338e30d78824f560b74ffb6296b6e607870
 }
 
 .headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
