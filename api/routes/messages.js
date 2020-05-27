@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Message = require('../models/message');
+const HandleResponse = require('./HandleResponse');
 
 //get all messages
 router.get('/list-all', function (req, res, next) {
@@ -8,19 +9,10 @@ router.get('/list-all', function (req, res, next) {
         Message.find()
             .exec(function (err, result) {
                 if (err) {
-                    return res.status(500).json({
-                        success: false,
-                        message: 'Erro ao tentar carregar as mensagens.',
-                        data: err
-                    });
+                    return res.status(500).json(HandleResponse.internalError('Erro ao tentar carregar as mensagens.', err));
                 }
 
-                res.status(200).json({
-                    success: true,
-                    message: "Mensagens carregadas com sucesso.",
-                    data: result,
-                    total: result.length
-                });
+                res.status(200).json(HandleResponse.listSuccess('Mensagens carregadas com sucesso.', result));
             });
     } catch (err) {
         console.log(err);
@@ -39,18 +31,9 @@ router.post('/create', function (req, res, next) {
 
         message.save(function (err, result) {
             if (err) {
-                return res.status(500).json({
-                    success: false,
-                    message: 'Ocorreu um erro ao tentar cadastrar a mensagem.',
-                    data: err
-                });
+                return res.status(500).json(HandleResponse.internalError('Ocorreu um erro ao tentar cadastrar a mensagem.', err));
             }
-            res.status(200).json({
-                success: true,
-                message: "Mensagem salva com sucesso",
-                data: result
-            });
-
+            res.status(200).json(HandleResponse.success('Mensagem salva com sucesso', result));
         });
     }
     catch (err) {
@@ -66,18 +49,10 @@ router.delete('/', function (req, res, next) {
 
         Message.deleteOne({ _id: messageId }, function (err, result) {
             if (err) {
-                return res.status(500).json({
-                    success: false,
-                    message: 'Erro ao tentar excluir a mensagem.',
-                    data: err
-                });
+                return res.status(500).json(HandleResponse.internalError('Erro ao tentar excluir a mensagem.', err));
             }
 
-            res.status(200).json({
-                success: true,
-                message: "Mensagem deletada com sucesso.",
-                data: null
-            });
+            res.status(200).json(HandleResponse.success("Mensagem deletada com sucesso.", null));
         })
     }
     catch (err) {
