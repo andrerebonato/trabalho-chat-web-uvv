@@ -14,43 +14,29 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [myOldMessages, setOldMessages] = useState([]);
     const [user, setUser] = useState([]);
+    const userId = getUser();
     const history = useHistory();
 
     useEffect(() => {
-        getAllMessages();
-    }, []);
-
-    async function getMyOldMessages() {
-        mainApi.get(eps.getOldMessages, { userId: getUser() }).then((res) => {
-            const oldMessages = res.data.data;
-            console.log(oldMessages)
-            if (res.data.success) {
-                setOldMessages(oldMessages);
-            } else {
-                getMyOldMessages();
+        mainApi.get(eps.getAllMessages).then((response) => {
+            if (response.data.success) {
+                setMessages(response.data.data);
             }
-        })
-    }
+        });
 
-    async function getAllMessages() {
-        const response = await mainApi.get(eps.getAllMessages);
-        if (response.data.success) {
-            setMessages(response.data.data);
-        }
-        else {
-            getAllMessages();
-        }
-    }
+        mainApi.get(eps.getOldMessages).then((response) => {
+            if (response.data.success) {
+                setOldMessages(response.data.data);
+            }
+        });
 
-    async function getUserData() {
-        let userId = getUser();
-        const response = await mainApi.get(eps.getUserData, userId);
-        if (response.data.success) {
-            setUser(response.data.data);
-        } else {
-            getUserData();
-        }
-    }
+        mainApi.get(eps.getUserData, userId).then((response) => {
+            if (response.data.success) {
+                setUser(response.data.data);
+            }
+        });
+
+    }, []);
 
     useEffect(() => { displayAlert("Conectado com sucesso ao chat.", typesAlert.success); }, []);
 
@@ -72,9 +58,8 @@ const Chat = () => {
 
             mainApi.post(eps.createMessage, newMessage).then((res) => {
                 if (res.data.success) {
-                    console.log('sucesso', newMessage)
-                    setMessages([...messages], newMessage);
-                    setOldMessages([...myOldMessages], newMessage);
+                    setMessages([...messages, newMessage]);
+                    setOldMessages([...myOldMessages, newMessage]);
                     setMessage('');
                 }
             })
@@ -102,20 +87,21 @@ const Chat = () => {
                                     </span>
                                 </div>
                             </div>
-                        </div>
-                        <div className="inbox_chat">
-                            {
-                                myOldMessages.length > 0 ? myOldMessages.map((m) => (
-                                    <OldMessage message={m} />
-                                )) : <h1>Você não tem nenhuma mensagem anterior.</h1>
-                            }
+
+                            <div className="inbox_chat">
+                                {
+                                    myOldMessages.length > 0 ? myOldMessages.map((m) => (
+                                        <OldMessage message={m} />
+                                    )) : <h1>Você não tem nenhuma mensagem anterior.</h1>
+                                }
+                            </div>
                         </div>
                     </div>
                     <div className="mesgs col-md-8">
                         <div className="msg_history">
                             {
                                 messages.map((m, index) => (
-                                    <Message message={m} myId={getUser()} />
+                                    <Message message={m} myId={userId} key={index} />
                                 ))
                             }
                         </div>

@@ -116,7 +116,7 @@ router.get('/list-all', verifyJwt, function (req, res, next) {
 });
 
 //get a user by id
-router.get('/get-by-id', verifyJwt, function (req, res, next) {
+router.get('/get-by-id', function (req, res, next) {
     try {
         const { userId } = req.body.userId;
 
