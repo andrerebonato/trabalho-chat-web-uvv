@@ -76,17 +76,6 @@ const Chat = ({ location }) => {
                                 <h4>Minhas mensagens</h4>
 
                             </div>
-                            <div className="srch_bar">
-                                <div className="stylish-input-group">
-                                    <input type="text" className="search-bar" placeholder="Pesquisar" />
-                                    <span className="input-group-addon">
-                                        <button type="button">
-                                            <i className="fa fa-search" aria-hidden="true"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
-
 
                         </div>
                         <div className="inbox_chat">
@@ -110,7 +99,7 @@ const Chat = ({ location }) => {
                                             }}><FontAwesomeIcon icon={faTrash} /></button>
                                         </div>
                                     </div>
-                                )) : <h1>Você não tem nenhuma mensagem anterior.</h1>
+                                )) : <h6 class="mt-5">Você não tem nenhuma mensagem anterior.</h6>
                             }
                         </div>
                     </div>
