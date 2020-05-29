@@ -24,7 +24,7 @@ const Login = () => {
                     if (res.data.success) {
                         displayAlert(res.data.message, typesAlert.success);
                         handleLogin(res.data.token, res.data.user._id);
-                        history.push(availablePages.chatPage);
+                        history.push(availablePages.chatPage, { user: res.data.user });
                     } else {
                         displayAlert(res.data.message, typesAlert.error);
                     }

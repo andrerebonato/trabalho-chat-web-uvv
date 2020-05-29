@@ -9,9 +9,7 @@ var jwt = require('jsonwebtoken');
 //get user older messages
 router.get('/get-my-old-messages', function (req, res, next) {
     try {
-        const userId = req.body.userId;
-
-        Message.find().where({ user: userId }).exec(function (err, result) {
+        Message.find().where({ user: req.body.userId }).exec(function (err, result) {
             if (err) {
                 return res.status(500).json(
                     HandleResponse.internalError('Ocorreu um erro ao tentar cadastrar o usuário.', err));
@@ -118,9 +116,8 @@ router.get('/list-all', verifyJwt, function (req, res, next) {
 //get a user by id
 router.get('/get-by-id', function (req, res, next) {
     try {
-        const { userId } = req.body.userId;
 
-        User.findOne().where({ _id: userId }).exec(function (err, result) {
+        User.find().where({ _id: req.body.userId }).exec(function (err, result) {
             if (err) return res.status(500).json(
                 HandleResponse.internalError('Ocorreu um erro interno ao tentar localizar o usuário.', err));
 
@@ -130,7 +127,7 @@ router.get('/get-by-id', function (req, res, next) {
                 );
             } else {
                 return res.status(200).json(
-                    HandleResponse.success('Usuário encontrado com sucesso.', result));
+                    HandleResponse.success(`Usuário encontrado com sucesso. ${req.body.userId}`, result));
             }
         });
     }
@@ -143,7 +140,7 @@ router.get('/get-by-id', function (req, res, next) {
 //delete user, the id needs to be informed on the request body
 router.delete('/delete-by-id', function (req, res, next) {
     try {
-        const { userId } = req.body.userId;
+        const userId = req.body.userId;
 
         User.deleteOne({ _id: userId }, function (err, result) {
             if (err) {

@@ -10,7 +10,8 @@ export const eps = {
     getOldMessages: '/user/get-my-old-messages',
     getUserData: '/user/get-by-id',
     getAllMessages: '/message/list-all',
-    createMessage: '/message/create'
+    createMessage: '/message/create',
+    deleteMessage: '/message/delete-message'
 }
 
 const mainApi = axios.create({

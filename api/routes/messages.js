@@ -26,7 +26,8 @@ router.post('/create', function (req, res, next) {
         const message = new Message({
             content: req.body.content,
             user: req.body.userId,
-            userName: req.body.userName
+            userName: req.body.userName,
+            date: req.body.date
         });
 
         message.save(function (err, result) {
@@ -43,11 +44,9 @@ router.post('/create', function (req, res, next) {
 });
 
 //delete message
-router.delete('/', function (req, res, next) {
+router.delete('/delete-message', function (req, res, next) {
     try {
-        const { messageId } = req.body.content;
-
-        Message.deleteOne({ _id: messageId }, function (err, result) {
+        Message.deleteOne({ _id: req.body.messageId }, function (err, result) {
             if (err) {
                 return res.status(500).json(HandleResponse.internalError('Erro ao tentar excluir a mensagem.', err));
             }
