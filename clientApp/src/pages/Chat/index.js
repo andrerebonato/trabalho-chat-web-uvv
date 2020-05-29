@@ -4,10 +4,12 @@ import { displayAlert, typesAlert } from '../../utils/displayAlert';
 import Message from './Message/index';
 import moment from 'moment';
 import { handleLogout, getUser } from '../../services/authJwt';
-import { OldMessage } from './MessagesTypes/index';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { availablePages } from '../../constants/index';
 import { useHistory } from 'react-router-dom';
 import mainApi, { eps } from '../../services/mainApi';
+import { OldMessage } from './MessagesTypes';
 
 const Chat = ({ location }) => {
     const [message, setMessage] = useState('');
@@ -89,8 +91,25 @@ const Chat = ({ location }) => {
                         </div>
                         <div className="inbox_chat">
                             {
-                                myOldMessages.length > 0 ? myOldMessages.map((m, index) => (
-                                    <OldMessage message={m} key={index} />
+                                myOldMessages.length > 0 ? myOldMessages.map((message, index) => (
+                                    <div class="chat_list active_chat" key={index}>
+                                        <div class="chat_people">
+                                            <div class="chat_ib">
+                                                <p>Conteúdo: {message.content}</p>
+                                                <small>Enviada em {message.date}</small>
+                                            </div>
+
+                                            <button class="btn btn-sm btn-danger" onClick={() => {
+                                                mainApi.post(eps.deleteMessage, { messageId: message._id }).then((res) => {
+                                                    if (res.data.success) {
+                                                        displayAlert(res.data.message, typesAlert.success);
+                                                        setMessages(messages.filter(item => item !== message));
+                                                        setOldMessages(myOldMessages.filter(item => item !== message));
+                                                    }
+                                                })
+                                            }}><FontAwesomeIcon icon={faTrash} /></button>
+                                        </div>
+                                    </div>
                                 )) : <h1>Você não tem nenhuma mensagem anterior.</h1>
                             }
                         </div>

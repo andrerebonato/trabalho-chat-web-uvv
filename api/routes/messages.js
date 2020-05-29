@@ -44,8 +44,9 @@ router.post('/create', function (req, res, next) {
 });
 
 //delete message
-router.delete('/delete-message', function (req, res, next) {
+router.post('/delete-message', function (req, res, next) {
     try {
+        console.log('ouiuiu', req.body)
         Message.deleteOne({ _id: req.body.messageId }, function (err, result) {
             if (err) {
                 return res.status(500).json(HandleResponse.internalError('Erro ao tentar excluir a mensagem.', err));

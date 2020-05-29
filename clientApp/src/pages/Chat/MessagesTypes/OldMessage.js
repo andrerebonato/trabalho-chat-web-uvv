@@ -13,7 +13,8 @@ const OldMessage = ({ message }) => (
             </div>
 
             <button class="btn btn-sm btn-danger" onClick={() => {
-                mainApi.delete(eps.deleteMessage, { messageId: message._id }).then((res) => {
+                console.log(message._id)
+                mainApi.post(eps.deleteMessage, { messageId: message._id }).then((res) => {
                     if (res.data.success) {
                         displayAlert(res.data.message, typesAlert.success);
                     }
