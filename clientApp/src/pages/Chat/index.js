@@ -92,8 +92,8 @@ const Chat = ({ location }) => {
                                                 mainApi.post(eps.deleteMessage, { messageId: message._id }).then((res) => {
                                                     if (res.data.success) {
                                                         displayAlert(res.data.message, typesAlert.success);
-                                                        setMessages(messages.filter(item => item !== message));
-                                                        setOldMessages(myOldMessages.filter(item => item !== message));
+                                                        setMessages(messages.filter(item => item._id !== message._id));
+                                                        setOldMessages(myOldMessages.filter(item => item._id !== message._id));
                                                     }
                                                 })
                                             }}><FontAwesomeIcon icon={faTrash} /></button>
