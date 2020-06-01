@@ -5,13 +5,6 @@ import { useHistory } from 'react-router-dom';
 
 const Home = () => {
     const history = useHistory();
-    useEffect(() => {
-        if (isAuthenticated)
-            history.push(availablePages.chatPage);
-        else {
-            history.push(availablePages.loginPage);
-        }
-    }, []);
 
     return (
         <>

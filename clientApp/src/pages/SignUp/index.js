@@ -6,6 +6,8 @@ import formValidation from './formValidation';
 import mainApi, { eps } from '../../services/mainApi';
 import { displayAlert, typesAlert } from '../../utils/displayAlert'
 import { availablePages } from '../../constants';
+import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const steps = {
     one: 1,
@@ -34,11 +36,10 @@ const SignUp = () => {
     }
 
     const StepOne = ({ formik }) => (
-        <>
-            <h4 className="mt-2 text-center font-weight-bold">{error ? error : "Realizar cadastro"}</h4>
+        <div className="form-group">
             <div className="form-group">
-                <style>{'body { background-color: whitesmoke; }'}</style>
-                <Field className="form-control" type="email" placeholder="Digite seu email" style={{ marginTop: 25 }}
+                <FontAwesomeIcon icon={faEnvelope} /><label className="ml-1">Informe um email válido:</label>
+                <Field className="form-control" type="email" placeholder="Digite seu email"
                     name="email"
                     onChange={e =>
                         formik.setFieldValue('email', e.target.value)
@@ -55,16 +56,15 @@ const SignUp = () => {
             >
                 Prosseguir
             </button>
-        </>
+        </div>
     );
 
     const StepTwo = ({ formik }) => (
         <>
-            <h2 className="mt-2 text-center font-weight-bold">Cadastro</h2>
             <Form method="post">
                 <div className="form-group row">
-                    <style>{'body { background-color: whitesmoke; }'}</style>
                     <div className="col-md-12">
+                        <FontAwesomeIcon icon={faUser} /><label className="ml-1">Informe um nome:</label>
                         <Field className="form-control col-md-12" type="name" placeholder="Digite seu nome..."
                             name="name"
                             onChange={e =>
@@ -75,8 +75,9 @@ const SignUp = () => {
                             {formik.touched.name && formik.errors.name}
                         </small>
                     </div>
-                    <div className="col-md-12 col-sm-12">
-                        <Field className="form-control mt-2 col-md-12" type="name" placeholder="Digite seu sobrenome..."
+                    <div className="col-md-12 col-sm-12 mt-2">
+                        <FontAwesomeIcon icon={faUser} /><label className="ml-1">Informe um sobrenome:</label>
+                        <Field className="form-control col-md-12" type="name" placeholder="Digite seu sobrenome..."
                             name="lastName"
                             onChange={e =>
                                 formik.setFieldValue('lastName', e.target.value)
@@ -86,8 +87,9 @@ const SignUp = () => {
                             {formik.touched.lastName && formik.errors.lastName}
                         </small>
                     </div>
-                    <div className="col-md-12 col-sm-12">
-                        <Field className="form-control mt-2 col-md-12" type="email" placeholder="Digite seu email..."
+                    <div className="col-md-12 col-sm-12 mt-2">
+                        <FontAwesomeIcon icon={faEnvelope} /><label className="ml-1">Informe um e-mail:</label>
+                        <Field className="form-control col-md-12" type="email" placeholder="Digite seu email..."
                             name="email"
                             onChange={e =>
                                 formik.setFieldValue('email', e.target.value)
@@ -97,8 +99,9 @@ const SignUp = () => {
                             {formik.touched.email && formik.errors.email}
                         </small>
                     </div>
-                    <div className="col-md-12 col-sm-12">
-                        <Field className="form-control mt-2 col-md-12" placeholder="Digite sua senha..."
+                    <div className="col-md-12 col-sm-12 mt-2">
+                        <FontAwesomeIcon icon={faLock} /><label className="ml-1">Informe uma senha:</label>
+                        <Field className="form-control col-md-12" placeholder="Digite sua senha..."
                             name="password"
                             type="password"
                             onChange={e =>
@@ -109,8 +112,9 @@ const SignUp = () => {
                             {formik.touched.password && formik.errors.password}
                         </small>
                     </div>
-                    <div className="col-md-12 col-sm-12">
-                        <Field className="form-control mt-2 col-md-12" placeholder="Repita sua senha..."
+                    <div className="col-md-12 col-sm-12 mt-2">
+                        <FontAwesomeIcon icon={faLock} /><label className="ml-1">Repita sua senha:</label>
+                        <Field className="form-control col-md-12" placeholder="Repita sua senha..."
                             name="repeatPassword"
                             type="password"
                             onChange={e =>
@@ -169,23 +173,19 @@ const SignUp = () => {
         >
             {
                 step === steps.one ? formik => (
-                    <div className="az-body smoke">
-                        <div className="az-signin-wrapper az-body">
-                            <div className="az-card-signin gradient">
-                                <div className="az-signin-header">
-                                    <StepOne formik={formik} />
-                                </div>
-                            </div>
+                    <div class="wrapper fadeInDown mt-5">
+                        <h1 class="text-center mb-3 text-light">Realizar cadastro</h1>
+                        <div id="formContent">
+                            <Form method="post">
+                                <StepOne formik={formik} />
+                            </Form>
                         </div>
                     </div>
                 ) : formik => (
-                    <div className="az-body smoke">
-                        <div className="az-signin-wrapper az-body">
-                            <div className="az-card-signin gradient">
-                                <div className="az-signin-header">
-                                    <StepTwo formik={formik} />
-                                </div>
-                            </div>
+                    <div class="wrapper fadeInDown mt-5">
+                        <h1 class="text-center mb-3 text-light">Realizar cadastro</h1>
+                        <div id="formContent">
+                            <StepTwo formik={formik} />
                         </div>
                     </div>
                 )

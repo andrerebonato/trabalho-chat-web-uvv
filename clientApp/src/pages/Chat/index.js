@@ -66,75 +66,74 @@ const Chat = ({ location }) => {
     }
 
     return (
-
-        <div className="container mt-4">
-            <div className="messaging">
-                <div className="inbox_msg">
-                    <div className="inbox_people col-md-4">
-                        <div className="headind_srch">
-                            <div className="recent_heading">
-                                <h4>Minhas mensagens</h4>
-
-                            </div>
-
+        <div class="container py-5 px-4">
+            <header class="text-center">
+                <h1 class="display-6 text-white text-bold">chat dos aliados</h1>
+            </header>
+            <div class="row rounded-lg overflow-hidden shadow">
+                <div class="col-5 px-0">
+                    <div class="bg-white">
+                        <div class="bg-gray px-4 py-2 bg-light">
+                            <p class="h5 mb-0 py-1">Mensagens antigas</p>
                         </div>
-                        <div className="inbox_chat">
-                            {
-                                myOldMessages.length > 0 ? myOldMessages.map((message, index) => (
-                                    <div class="chat_list active_chat" key={index}>
-                                        <div class="chat_people">
-                                            <div class="chat_ib">
-                                                <p>Conteúdo: {message.content}</p>
-                                                <small>Enviada em {message.date}</small>
+                        <div class="messages-box">
+                            <div class="list-group rounded-0">
+                                {
+                                    myOldMessages.length > 0 ? myOldMessages.map((message, index) => (
+                                        <div class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                            <div class="media">
+                                                <div class="media-body ml-4">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                        <h6 class="mb-0">Data de envio:</h6><small class="small font-weight-bold">{message.date}</small>
+                                                    </div>
+                                                    <p class="font-italic mb-0 text-small">Conteúdo: {message.content}</p>
+                                                </div>
+                                                <button class="btn btn-sm btn-danger mt-4" onClick={() => {
+                                                    mainApi.post(eps.deleteMessage, { messageId: message._id }).then((res) => {
+                                                        if (res.data.success) {
+                                                            displayAlert(res.data.message, typesAlert.success);
+                                                            setMessages(messages.filter(item => item._id !== message._id));
+                                                            setOldMessages(myOldMessages.filter(item => item._id !== message._id));
+                                                        }
+                                                    })
+                                                }}><FontAwesomeIcon icon={faTrash} /></button>
                                             </div>
-
-                                            <button class="btn btn-sm btn-danger" onClick={() => {
-                                                mainApi.post(eps.deleteMessage, { messageId: message._id }).then((res) => {
-                                                    if (res.data.success) {
-                                                        displayAlert(res.data.message, typesAlert.success);
-                                                        setMessages(messages.filter(item => item._id !== message._id));
-                                                        setOldMessages(myOldMessages.filter(item => item._id !== message._id));
-                                                    }
-                                                })
-                                            }}><FontAwesomeIcon icon={faTrash} /></button>
                                         </div>
-                                    </div>
-                                )) : <h6 class="mt-5">Você não tem nenhuma mensagem anterior.</h6>
-                            }
-                        </div>
-                    </div>
-                    <div className="mesgs col-md-8">
-                        <div className="msg_history">
-                            {
-                                messages.map((m, index) => (
-                                    <Message message={m} myId={user._id} key={index + 1} />
-                                ))
-                            }
-                        </div>
 
-                        <div className="type_msg">
-                            <div className="input_msg_write">
-                                <input type="text" className="form-control"
-                                    placeholder="Digite a sua mensagem e pressione clique no botão para enviar..."
-                                    onChange={handleInputChange} value={message}
-                                />
-                                <button className="msg_send_btn primary-bg" type="button" onClick={handleFormSubmit}><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                                    )) : <h6 class="mb-0 text-center mt-4">Você não tem nenhuma mensagem anterior.</h6>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <button className="btn btn-danger mt-1"
+                <div class="col-7 px-0">
+                    <div class="px-4 py-5 chat-box bg-white">
+                        {
+                            messages.map((m, index) => (
+                                <Message message={m} myId={user._id} key={index + 1} />
+                            ))
+                        }
+                    </div>
+                    <div class="bg-light">
+                        <div class="input-group">
+                            <input type="text" placeholder="Insira uma mensagem que deseja enviar..." aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light text-left" onChange={handleInputChange} value={message} />
+                            <div class="input-group-append">
+                                <button id="button-addon2" type="submit" onClick={handleFormSubmit} class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button className="btn btn-light mt-1"
                     onClick={() => {
                         handleLogout();
                         history.push(availablePages.loginPage)
                         displayAlert('Desconectado do chat com sucesso.', typesAlert.error);
                     }}
                 >
-                    Sair do chat
+                    Desconectar do chat
                 </button>
             </div>
-        </div>
+        </div >
     )
 }
 

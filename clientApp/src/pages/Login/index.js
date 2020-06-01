@@ -34,16 +34,14 @@ const Login = () => {
         >
             {
                 formik => (
-                    <div className="az-body smoke">
-                        <style>{'body { background-color: whitesmoke; }'}</style>
-                        <div className="az-signin-wrapper az-body">
-                            <div className="az-card-signin gradient">
-                                <div className="az-signin-header">
-                                    <h2 className="mt-2 text-center font-weight-bold">Bem-vindo de volta!</h2>
-                                    <Form method="post">
-
+                    <>
+                        <div class="wrapper fadeInDown mt-5">
+                            <h1 class="text-center mb-3 text-light">Acessar chat</h1>
+                            <div id="formContent">
+                                <Form method="post">
+                                    <div className="form-group">
                                         <div className="form-group">
-                                            <FontAwesomeIcon icon={faEnvelope} /><label className="ml-1 font-weight-bold">Email:</label>
+                                            <FontAwesomeIcon icon={faEnvelope} /><label className="ml-1">Email:</label>
                                             <Field
                                                 name="email"
                                                 className="form-control"
@@ -56,9 +54,8 @@ const Login = () => {
                                                 {formik.touched.email && formik.errors.email}
                                             </small>
                                         </div>
-
                                         <div className="form-group">
-                                            <FontAwesomeIcon icon={faUnlock} /><label className="ml-1 font-weight-bold"> Senha:</label>
+                                            <FontAwesomeIcon icon={faUnlock} /><label className="ml-1"> Senha:</label>
                                             <Field
                                                 name="password"
                                                 type="password"
@@ -72,18 +69,19 @@ const Login = () => {
                                                 {formik.touched.password && formik.errors.password}
                                             </small>
                                         </div>
-
-                                        <button className="btn-block btn btn-login mr-2 primary-bg" type="submit">Entrar</button>
-                                    </Form>
-                                    <button className="btn btn-link text-muted"
-                                        onClick={() => {
-                                            history.push(availablePages.signUpPage)
-                                        }}
-                                    >Ainda não tem uma conta? Clique aqui.</button>
-                                </div>
+                                        <button className="btn-block btn btn-primary mr-2 primary-bg" type="submit">Entrar</button>
+                                        <button className="btn btn-link text-muted" type="button"
+                                            onClick={() => {
+                                                history.push(availablePages.signUpPage)
+                                            }}
+                                        >
+                                            Ainda não tem uma conta? Clique aqui.
+                                    </button>
+                                    </div>
+                                </Form>
                             </div>
                         </div>
-                    </div>
+                    </>
                 )
             }
         </Formik>
